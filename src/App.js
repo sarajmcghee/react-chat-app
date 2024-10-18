@@ -4,6 +4,7 @@ import Login from './Login';
 import './App.css'; // Make sure to import the CSS
 import maleImage from './water.jpg'; // Adjust the path based on your file structure
 import femaleImage from './trees.jpg'; // Adjust the path based on your file structure
+import PasswordField from './PasswordField'; // Adjust the path as necessary
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
