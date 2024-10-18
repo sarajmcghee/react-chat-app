@@ -6,6 +6,9 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
+const passport = require('passport');
+const GitHubStrategy = require('passport-github').Strategy;
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +17,29 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(session({ secret: 'your_secret_key', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// GitHub OAuth setup
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: 'http://localhost:5000/auth/callback',
+  },
+  (accessToken, refreshToken, profile, done) => {
+    // Here you can save the user information to your database
+    return done(null, profile);
+  }
+));
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 // Hardcoded user credentials (for demo purposes)
 const user = {
@@ -21,7 +47,7 @@ const user = {
   password: bcrypt.hashSync('test', 8), // Hash the password
 };
 
-// Authentication endpoint
+// Authentication endpoint (for username/password)
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   
@@ -46,14 +72,25 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+// GitHub login route
+app.get('/auth/github', passport.authenticate('github'));
+
+// GitHub callback route
+app.get('/auth/callback', 
+  passport.authenticate('github', { failureRedirect: '/' }),
+  (req, res) => {
+    // Successful authentication, you can redirect to your dashboard or send user data
+    res.redirect('/dashboard'); // Change this to your desired route
+  }
+);
+
 // Endpoint to generate audio using OpenAI (protected)
-app.post('/api/generate-audio', async (req, res) => {
+app.post('/api/generate-audio', authenticateToken, async (req, res) => {
   const { text, voice } = req.body;
 
   try {
     const response = await axios.post('https://api.openai.com/v1/audio/speech', {
       model: 'tts-1',
-      // voice: 'shimmer',
       voice: voice,
       input: text,
     }, {
@@ -63,7 +100,6 @@ app.post('/api/generate-audio', async (req, res) => {
       },
       responseType: 'arraybuffer'
     });
-
 
     const audioFileName = `output-${Date.now()}.mp3`;
     const audioFilePath = path.join(__dirname, audioFileName);
@@ -82,9 +118,6 @@ app.post('/api/generate-audio', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-
-
 
 // Serve static files
 app.use(express.static(__dirname));
