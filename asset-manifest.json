@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-chat-app/static/css/main.156dda0e.css",
-    "main.js": "/react-chat-app/static/js/main.3a4b154a.js",
+    "main.css": "/react-chat-app/static/css/main.30ef9d96.css",
+    "main.js": "/react-chat-app/static/js/main.e25aa433.js",
     "static/media/trees.jpg": "/react-chat-app/static/media/trees.29ca5844e7d9b439d04f.jpg",
     "static/media/water.jpg": "/react-chat-app/static/media/water.b0e7e2ca7c194030c334.jpg",
     "index.html": "/react-chat-app/index.html",
-    "main.156dda0e.css.map": "/react-chat-app/static/css/main.156dda0e.css.map",
-    "main.3a4b154a.js.map": "/react-chat-app/static/js/main.3a4b154a.js.map"
+    "main.30ef9d96.css.map": "/react-chat-app/static/css/main.30ef9d96.css.map",
+    "main.e25aa433.js.map": "/react-chat-app/static/js/main.e25aa433.js.map"
   },
   "entrypoints": [
-    "static/css/main.156dda0e.css",
-    "static/js/main.3a4b154a.js"
+    "static/css/main.30ef9d96.css",
+    "static/js/main.e25aa433.js"
   ]
 }
