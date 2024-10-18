@@ -1,0 +1,18 @@
+
+
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Program",
+        "skipFiles": ["<node_internals>/**"],
+        "program": "${workspaceFolder}/server/server.js", // Path to your main server file
+        "env": {
+          "OPENAI_API_KEY": "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" // Optional: set environment variables
+        }
+      }
+    ]
+  }
+  
