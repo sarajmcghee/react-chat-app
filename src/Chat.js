@@ -76,7 +76,24 @@ const Chat = () => {
     if (value.length <= 2000) {
       setInput(value);
       setCharCount(value.length); // Update the character count
+    } else {
+      setInput(value.slice(0, 2000)); // Limit input to 2000 characters
+      setCharCount(2000); // Set character count to max
     }
+  };
+
+  // Handle paste event to ensure text stays within the limit
+  const handlePaste = (e) => {
+    const pasteData = e.clipboardData.getData('text');
+    const newText = input + pasteData;
+    if (newText.length <= 2000) {
+      setInput(newText);
+      setCharCount(newText.length);
+    } else {
+      setInput(newText.slice(0, 2000));
+      setCharCount(2000);
+    }
+    e.preventDefault(); // Prevent the default paste behavior
   };
 
   const toggleMenu = () => {
@@ -85,7 +102,7 @@ const Chat = () => {
 
   return (
     <div className="container">
-      {/* Hamburger Menu */}
+     {/* Hamburger Menu */}
       <div className="menu">
         <div className="hamburger" onClick={toggleMenu}>
           <div className="bar"></div>
@@ -122,13 +139,14 @@ const Chat = () => {
           type="text"
           value={input}
           onChange={handleInputChange}
+          onPaste={handlePaste}
           placeholder="Type your message... (max 2000 characters)"
         />
-        <button type="submit" disabled={charCount === 2000}>Send</button>
+        <button type="submit" disabled={charCount > 2000}>Send</button>
       </form>
 
       {/* Display character count */}
-      <p>{charCount}/2000 characters</p>
+      <p style={{ color: charCount > 2000 ? 'red' : 'white' }}>{charCount}/2000 characters</p>
 
       {/* Voice Selection below the submit button */}
       <div className="voice-selection">
