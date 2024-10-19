@@ -42,7 +42,7 @@ const App = () => {
             ) : (
               <Login onLogin={handleLogin} />
             )} />
-            <Route path="/auth/callback" element={<LoginRedirectHandler onLogin={handleLogin} />} />
+<Route path="/auth/callback" element={<LoginRedirectHandler onLogin={handleLogin} />} />
           </Routes>
         )}
       </div>

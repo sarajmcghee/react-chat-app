@@ -1,26 +1,33 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LoginRedirectHandler = ({ onLogin }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleLoginRedirect = async () => {
-      const query = new URLSearchParams(window.location.search);
-      const token = query.get('token');
-      console.log('Token from URL:', token);  // Log to see if the token is extracted correctly
+      // Extract the token from the hash URL (from the search part after the '?')
+      const searchParams = new URLSearchParams(location.search);
+      const token = searchParams.get('token');
+
       if (token) {
-        // Store the JWT token in localStorage
+        console.log('Token found:', token); // Log to check if token is correctly extracted
+        // Store the JWT token in local storage
         localStorage.setItem('token', token);
+
+        // Notify the parent component that the user is authenticated
         onLogin(true);
-        navigate('/'); // Redirect to the home/chat page
+
+        // Redirect to the chat page or the default logged-in route
+        navigate('/');
       } else {
-        console.error('No token found in the callback URL');
+        console.error('Token not found in the URL');
       }
     };
 
     handleLoginRedirect();
-  }, [navigate, onLogin]);
+  }, [location.search, navigate, onLogin]);
 
   return <div>Loading...</div>;
 };
