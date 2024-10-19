@@ -219,7 +219,6 @@ button:active {
   width: 30px;
   height: 20px;
   margin-left: 0; /* Align to the left */
-  position: relative; /* Contain dropdown */
 }
 
 .hamburger .bar {
@@ -230,17 +229,21 @@ button:active {
 }
 
 /* Dropdown Menu */
+.menu {
+  position: relative; /* Make menu relative to the container */
+  display: inline-block;
+}
+
 .dropdown-content {
   position: absolute;
-  top: 30px; /* Adjust the top value so it appears below the hamburger */
-  left: 0; /* Align directly under the hamburger */
+  top: 40px;
+  left: 0; /* Align dropdown to the left */
   background-color: black;
   color: white;
   padding: 10px;
   border-radius: 5px;
-  z-index: 1000; /* Ensure dropdown is above other elements */
-  width: 150px; /* Set width for the dropdown */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for dropdown */
+  z-index: 1000;
+  min-width: 150px; /* Set minimum width */
 }
 
 .dropdown-content button {
@@ -257,3 +260,34 @@ button:active {
   background-color: #333;
 }
 
+/* Loading Indicator */
+.loading-indicator {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.loading-indicator::after {
+  content: '...';
+  animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(255, 255, 255, 0);
+    text-shadow: .25em 0 0 rgba(255, 255, 255, 0),
+                 .5em 0 0 rgba(255, 255, 255, 0);
+  }
+  40% {
+    color: white;
+    text-shadow: .25em 0 0 rgba(255, 255, 255, 0),
+                 .5em 0 0 rgba(255, 255, 255, 0);
+  }
+  60% {
+    text-shadow: .25em 0 0 white, .5em 0 0 rgba(255, 255, 255, 0);
+  }
+  80%, 100% {
+    text-shadow: .25em 0 0 white, .5em 0 0 white;
+  }
+}

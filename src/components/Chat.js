@@ -1,20 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/App.css'; 
-import maleImage from '../assets/water.jpg'; // Replace with actual path for male voice image
-import femaleImage from '../assets/trees.jpg'; // Replace with actual path for female voice image
+import './App.css'; 
+import maleImage from './water.jpg'; // Replace with actual path for male voice image
+import femaleImage from './trees.jpg'; // Replace with actual path for female voice image
 
 const Chat = () => {
   const [input, setInput] = useState(''); // For input text
   const [selectedVoice, setSelectedVoice] = useState('alloy'); // For selected voice
   const [messages, setMessages] = useState([]); // For storing messages
   const [menuOpen, setMenuOpen] = useState(false); // For handling menu state
-  const [charCount, setCharCount] = useState(0); // To track the character count
-  const maxCharLimit = 2000; // Maximum character limit
-
-  // Reference for the bottom of the chat window
-  const messagesEndRef = useRef(null);
-
+  const [loading, setLoading] = useState(false); // New state for loading indicator
+  
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
     : 'https://mysterious-beginning-ef3abfb64de0.herokuapp.com';
@@ -39,6 +35,8 @@ const Chat = () => {
   const handleGenerateAudio = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
 
+    setLoading(true); // Set loading to true when starting the request
+
     try {
       const response = await axios.post(`${backendUrl}/api/generate-audio`, {
         text: input,  // Pass the input text from state
@@ -55,6 +53,8 @@ const Chat = () => {
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error generating audio:', error);
+    } finally {
+      setLoading(false); // Set loading to false when the request finishes
     }
   };
 
@@ -71,41 +71,7 @@ const Chat = () => {
 
     // Clear input after submission
     setInput('');
-    setCharCount(0); // Reset character count
   };
-
-  // Handle character count and input change
-  const handleChange = (e) => {
-    const newText = e.target.value;
-    if (newText.length <= maxCharLimit) {
-      setInput(newText);
-      setCharCount(newText.length);
-    }
-  };
-
-  // Handle pasting text into the input field
-  const handlePaste = (e) => {
-    const pasteData = e.clipboardData.getData('text');
-    const newText = input + pasteData;
-
-    if (newText.length <= maxCharLimit) {
-      setInput(newText);
-      setCharCount(newText.length);
-    } else {
-      setInput(newText.slice(0, maxCharLimit));
-      setCharCount(maxCharLimit);
-    }
-  };
-
-  // Scroll to the bottom of the chat window
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Trigger scroll to bottom when new messages are added
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen); // Toggle the dropdown menu
@@ -142,8 +108,8 @@ const Chat = () => {
             )}
           </div>
         ))}
-        {/* Dummy div for scrolling to the bottom */}
-        <div ref={messagesEndRef} />
+        {/* Display animated dots when waiting for a response */}
+        {loading && <div className="loading-indicator">...</div>}
       </div>
       
       {/* Input form */}
@@ -151,17 +117,11 @@ const Chat = () => {
         <input
           type="text"
           value={input}
-          onChange={handleChange}
-          onPaste={handlePaste}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
         />
-        <button type="submit" disabled={charCount > maxCharLimit}>Send</button>
+        <button type="submit" disabled={loading}>Send</button>
       </form>
-
-      {/* Character count with red warning if exceeding 2000 characters */}
-      <div style={{ color: charCount > maxCharLimit ? 'red' : 'white' }}>
-        {charCount}/{maxCharLimit}
-      </div>
 
       {/* Voice Selection below the submit button */}
       <div className="voice-selection">
