@@ -75,7 +75,7 @@ const Chat = () => {
 
   return (
     <div className="container">
-      {/* Hamburger Menu */}
+            {/* Hamburger Menu */}
       <div className="menu">
         <div className="hamburger" onClick={toggleMenu}>
           <div className="bar"></div>

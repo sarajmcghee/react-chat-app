@@ -208,6 +208,8 @@ button:active {
 }
 
 
+/* App.css */
+
 /* Hamburger Menu */
 .hamburger {
   cursor: pointer;
@@ -231,8 +233,10 @@ button:active {
   top: 40px; /* Adjust as needed */
   right: 0;
   background-color: black;
+  color: white;
   padding: 10px;
   border-radius: 5px;
+  z-index: 1000; /* Ensure it's on top */
 }
 
 .dropdown-content button {
@@ -242,9 +246,20 @@ button:active {
   padding: 10px;
   cursor: pointer;
   width: 100%;
+  text-align: left; /* Align text to the left */
 }
 
 .dropdown-content button:hover {
-  background-color: #333;
+  background-color: #333; /* Slight change on hover */
+}
+
+.container {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
