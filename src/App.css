@@ -208,7 +208,7 @@ button:active {
 }
 
 
-//* Hamburger Menu */
+/* Hamburger Menu */
 .hamburger {
   cursor: pointer;
   display: flex;
