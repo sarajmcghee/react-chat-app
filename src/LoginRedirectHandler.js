@@ -5,21 +5,17 @@ const LoginRedirectHandler = ({ onLogin }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleLoginRedirect = () => {
-      const params = new URLSearchParams(window.location.search);
-      const token = params.get('token');
+    const handleLoginRedirect = async () => {
+      const query = new URLSearchParams(window.location.search);
+      const token = query.get('token');
 
       if (token) {
-        // Replace the old token with the new one
+        // Store the JWT token in localStorage
         localStorage.setItem('token', token);
-
-        // Notify the parent component that login was successful
         onLogin(true);
-
-        // Navigate to the chat page
-        navigate('/chat');
+        navigate('/'); // Redirect to the home/chat page
       } else {
-        console.error('Token not found in the URL');
+        console.error('No token found in the callback URL');
       }
     };
 
