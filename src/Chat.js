@@ -8,7 +8,7 @@ const Chat = () => {
   const [input, setInput] = useState(''); // For input text
   const [selectedVoice, setSelectedVoice] = useState('alloy'); // For selected voice
   const [messages, setMessages] = useState([]); // For storing messages
-  const [showMenu, setShowMenu] = useState(false); // For toggling menu visibility
+  const [menuOpen, setMenuOpen] = useState(false); // For handling menu state
   
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
@@ -17,12 +17,13 @@ const Chat = () => {
   // Function to log out the user
   const handleLogout = () => {
     localStorage.removeItem('token'); // Remove token from localStorage
-    window.location.href = '/'; // Redirect to the homepage or login page
-  };
-
-  // Function to toggle the menu
-  const toggleMenu = () => {
-    setShowMenu(!showMenu); // Toggle the menu visibility
+  
+    // Redirect to the homepage or login page based on environment
+    const redirectUrl = window.location.hostname === 'localhost'
+      ? '/'  // For local development
+      : '/react-chat-app/';  // For GitHub Pages
+  
+    window.location.href = redirectUrl;
   };
 
   // Function to select voice
@@ -67,17 +68,21 @@ const Chat = () => {
     setInput('');
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle the dropdown menu
+  };
+
+
   return (
     <div className="container">
       {/* Hamburger Menu */}
       <div className="menu">
-        <button className="hamburger-menu" onClick={toggleMenu}>
-          {/* The three lines (hamburger icon) */}
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </button>
-        {showMenu && (
+        <div className="hamburger" onClick={toggleMenu}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+        {menuOpen && (
           <div className="dropdown-content">
             <button onClick={handleLogout}>Logout</button>
           </div>

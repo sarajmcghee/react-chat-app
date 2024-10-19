@@ -209,46 +209,42 @@ button:active {
 
 
 /* Hamburger Menu */
-.hamburger-menu {
-  background: none;
-  border: none;
+.hamburger {
   cursor: pointer;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 24px;
   width: 30px;
+  height: 20px;
 }
 
-.hamburger-menu .line {
-  background-color: #fff; /* White lines */
-  height: 4px;
+.hamburger .bar {
   width: 100%;
-  border-radius: 2px;
+  height: 4px;
+  background-color: white;
+  margin: 2px 0;
 }
 
-/* Dropdown Content */
+/* Dropdown Menu */
 .dropdown-content {
   position: absolute;
-  top: 40px;
-  right: 10px;
-  background-color: #343a40; /* Dark background for dropdown */
+  top: 40px; /* Adjust as needed */
+  right: 0;
+  background-color: black;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-content button {
-  background-color: #007bff;
+  background-color: black;
   color: white;
-  padding: 10px;
   border: none;
-  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
   width: 100%;
 }
 
 .dropdown-content button:hover {
-  background-color: #0056b3;
+  background-color: #333;
 }
+
