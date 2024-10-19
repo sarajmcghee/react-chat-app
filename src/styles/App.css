@@ -291,3 +291,13 @@ button:active {
     text-shadow: .25em 0 0 white, .5em 0 0 white;
   }
 }
+
+/* Add these to App.css */
+
+
+.error-message {
+  text-align: center;
+  color: #dc3545; /* Red color */
+  font-size: 16px;
+  margin-top: 10px;
+}

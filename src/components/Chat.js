@@ -10,6 +10,7 @@ const Chat = () => {
   const [messages, setMessages] = useState([]); // For storing messages
   const [menuOpen, setMenuOpen] = useState(false); // For handling menu state
   const [loading, setLoading] = useState(false); // New state for loading indicator
+  const [error, setError] = useState(''); // For tracking error state
   
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
@@ -53,6 +54,7 @@ const Chat = () => {
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error generating audio:', error);
+      setError('Failed to generate audio. Please try again.'); // Set error message
     } finally {
       setLoading(false); // Set loading to false when the request finishes
     }
@@ -110,6 +112,8 @@ const Chat = () => {
         ))}
         {/* Display animated dots when waiting for a response */}
         {loading && <div className="loading-indicator">...</div>}
+         {/* Show Error Message */}
+         {error && <div className="error-message">{error}</div>}
       </div>
       
       {/* Input form */}
