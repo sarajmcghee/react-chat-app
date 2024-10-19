@@ -6,7 +6,7 @@ import femaleImage from '../assets/trees.jpg'; // Replace with actual path for f
 
 const Chat = () => {
   const [input, setInput] = useState(''); // For input text
-  const [selectedVoice, setSelectedVoice] = useState('alloy'); // For selected voice
+  const [selectedVoice, setSelectedVoice] = useState('onyx'); // Default to 'onyx'
   const [messages, setMessages] = useState([]); // For storing messages
   const [menuOpen, setMenuOpen] = useState(false); // For handling menu state
   const [loading, setLoading] = useState(false); // New state for loading indicator
