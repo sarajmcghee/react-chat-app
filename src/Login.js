@@ -2,7 +2,6 @@ import React from 'react';
 
 const Login = ({ onLogin }) => {
   const handleGithubLogin = () => {
-    // Redirect to the GitHub OAuth login page
     window.location.href = 'https://mysterious-beginning-ef3abfb64de0.herokuapp.com/auth/github';
   };
 
