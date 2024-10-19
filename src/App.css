@@ -59,14 +59,14 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #28a745;
+  background-color: #007bff; /* Blue color */
   color: white;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.1s;
 }
 
 button:hover {
-  background-color: #218838;
+  background-color: #0056b3; /* Darker blue color on hover */
 }
 
 button:active {
@@ -216,7 +216,7 @@ button:active {
   justify-content: space-between;
   width: 30px;
   height: 20px;
-  margin-left: 0; /* Align to the left */
+  position: relative; /* Ensure dropdown is positioned relative to the hamburger */
 }
 
 .hamburger .bar {
@@ -229,13 +229,14 @@ button:active {
 /* Dropdown Menu */
 .dropdown-content {
   position: absolute;
-  top: 40px;
-  left: 0; /* Align dropdown to the left */
+  top: 30px; /* Place directly below the hamburger menu */
+  left: 0; /* Align with the hamburger menu */
   background-color: black;
   color: white;
   padding: 10px;
   border-radius: 5px;
   z-index: 1000;
+  width: 150px; /* Set a width for the dropdown */
 }
 
 .dropdown-content button {
@@ -251,4 +252,3 @@ button:active {
 .dropdown-content button:hover {
   background-color: #333;
 }
-
