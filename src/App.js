@@ -6,6 +6,8 @@ import Chat from './Chat';
 import LoginRedirectHandler from './LoginRedirectHandler';
 import './App.css';
 
+const basename = window.location.hostname === 'localhost' ? '/' : '/react-chat-app';
+
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -28,7 +30,7 @@ const App = () => {
     };
 
     return (
-        <Router basename="/react-chat-app"> {/* Set the basename here */}
+        <Router basename={basename}>
             <div className="container">
                 {loading ? (
                     <p>Loading...</p>
@@ -51,4 +53,3 @@ const App = () => {
 };
 
 export default App;
-
