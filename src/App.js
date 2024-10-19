@@ -1,9 +1,9 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Use HashRouter for GitHub Pages
-import Login from './Login';
-import Chat from './Chat';
-import LoginRedirectHandler from './LoginRedirectHandler';
+import Login from './components/auth/Login';
+import Chat from './components/Chat';
+import LoginRedirectHandler from './components/auth/LoginRedirectHandler';
 import './App.css';
 
 const App = () => {

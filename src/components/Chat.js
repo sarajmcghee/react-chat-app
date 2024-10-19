@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css'; 
 import maleImage from './water.jpg'; // Replace with actual path for male voice image
@@ -9,8 +9,12 @@ const Chat = () => {
   const [selectedVoice, setSelectedVoice] = useState('alloy'); // For selected voice
   const [messages, setMessages] = useState([]); // For storing messages
   const [menuOpen, setMenuOpen] = useState(false); // For handling menu state
-  const [charCount, setCharCount] = useState(0); // For tracking character count
-  
+  const [charCount, setCharCount] = useState(0); // To track the character count
+  const maxCharLimit = 2000; // Maximum character limit
+
+  // Reference for the bottom of the chat window
+  const messagesEndRef = useRef(null);
+
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
     : 'https://mysterious-beginning-ef3abfb64de0.herokuapp.com';
@@ -57,7 +61,7 @@ const Chat = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     // Add the user message to the chat
     const userMessage = { text: input, sender: 'user' };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
@@ -70,30 +74,38 @@ const Chat = () => {
     setCharCount(0); // Reset character count
   };
 
-  // Handle input change with a character limit
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    if (value.length <= 2000) {
-      setInput(value);
-      setCharCount(value.length); // Update the character count
-    } else {
-      setInput(value.slice(0, 2000)); // Limit input to 2000 characters
-      setCharCount(2000); // Set character count to max
+  // Handle character count and input change
+  const handleChange = (e) => {
+    const newText = e.target.value;
+    if (newText.length <= maxCharLimit) {
+      setInput(newText);
+      setCharCount(newText.length);
     }
   };
 
-  // Handle paste event to ensure text stays within the limit
+  // Handle pasting text into the input field
   const handlePaste = (e) => {
     const pasteData = e.clipboardData.getData('text');
     const newText = input + pasteData;
-    if (newText.length <= 2000) {
+
+    if (newText.length <= maxCharLimit) {
       setInput(newText);
       setCharCount(newText.length);
     } else {
-      setInput(newText.slice(0, 2000));
-      setCharCount(2000);
+      setInput(newText.slice(0, maxCharLimit));
+      setCharCount(maxCharLimit);
     }
   };
+
+  // Scroll to the bottom of the chat window
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Trigger scroll to bottom when new messages are added
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen); // Toggle the dropdown menu
@@ -101,7 +113,7 @@ const Chat = () => {
 
   return (
     <div className="container">
-     {/* Hamburger Menu */}
+      {/* Hamburger Menu */}
       <div className="menu">
         <div className="hamburger" onClick={toggleMenu}>
           <div className="bar"></div>
@@ -130,22 +142,26 @@ const Chat = () => {
             )}
           </div>
         ))}
+        {/* Dummy div for scrolling to the bottom */}
+        <div ref={messagesEndRef} />
       </div>
-
+      
       {/* Input form */}
       <form className="input-container" onSubmit={handleSubmit}>
         <input
           type="text"
           value={input}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onPaste={handlePaste}
-          placeholder="Type your message... (max 2000 characters)"
+          placeholder="Type your message..."
         />
-        <button type="submit" disabled={charCount > 2000}>Send</button>
+        <button type="submit" disabled={charCount > maxCharLimit}>Send</button>
       </form>
 
-      {/* Display character count */}
-      <p style={{ color: charCount > 2000 ? 'red' : 'white' }}>{charCount}/2000 characters</p>
+      {/* Character count with red warning if exceeding 2000 characters */}
+      <div style={{ color: charCount > maxCharLimit ? 'red' : 'white' }}>
+        {charCount}/{maxCharLimit}
+      </div>
 
       {/* Voice Selection below the submit button */}
       <div className="voice-selection">
