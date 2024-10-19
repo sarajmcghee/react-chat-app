@@ -93,7 +93,6 @@ const Chat = () => {
       setInput(newText.slice(0, 2000));
       setCharCount(2000);
     }
-    e.preventDefault(); // Prevent the default paste behavior
   };
 
   const toggleMenu = () => {
