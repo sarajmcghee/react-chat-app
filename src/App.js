@@ -63,7 +63,7 @@ const App = () => {
               path="/"
               element={isAuthenticated ? (
                 <>
-                  <h2>Chat Application</h2>
+                  <h2 className="voxify-header">Voxify</h2>
                   <Chat onLogout={handleLogout} />
                 </>
               ) : (
