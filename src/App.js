@@ -4,7 +4,8 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Use H
 import Login from './components/auth/Login';
 import Chat from './components/Chat';
 import LoginRedirectHandler from './components/auth/LoginRedirectHandler';
-import './App.css';
+import './styles/App.css';
+
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
