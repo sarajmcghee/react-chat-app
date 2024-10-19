@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css'; 
-import maleImage from './maleImage.jpg'; // Replace with actual path for male voice image
-import femaleImage from './femaleImage.jpg'; // Replace with actual path for female voice image
+import maleImage from './water.jpg'; // Replace with actual path for male voice image
+import femaleImage from './trees.jpg'; // Replace with actual path for female voice image
 
 const Chat = () => {
   const [input, setInput] = useState(''); // For input text
