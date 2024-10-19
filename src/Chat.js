@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css'; 
+import maleImage from './water.jpg'; // Adjust the path based on your file structure
+import femaleImage from './trees.jpg'; // Adjust the path based on your file structure
 
 const Chat = () => {
   const [input, setInput] = useState(''); // For input text
@@ -48,6 +50,11 @@ const Chat = () => {
     setInput('');
   };
 
+  // Handle voice selection
+  const handleVoiceSelect = (voice) => {
+    setSelectedVoice(voice); // Update the selected voice
+  };
+
   return (
     <div className="container">
       <div className="chat-window">
@@ -66,6 +73,25 @@ const Chat = () => {
           </div>
         ))}
       </div>
+
+      {/* Voice Selection with Images */}
+      <div className="voice-selection">
+        <div 
+          className={`voice-option ${selectedVoice === 'onyx' ? 'selected' : ''}`} 
+          onClick={() => handleVoiceSelect('onyx')}
+        >
+          <img src={maleImage} alt="Male Voice" />
+          <div className="voice-label">Male Voice</div>
+        </div>
+        <div 
+          className={`voice-option ${selectedVoice === 'shimmer' ? 'selected' : ''}`} 
+          onClick={() => handleVoiceSelect('shimmer')}
+        >
+          <img src={femaleImage} alt="Female Voice" />
+          <div className="voice-label">Female Voice</div>
+        </div>
+      </div>
+
       <form className="input-container" onSubmit={handleSubmit}>
         <input
           type="text"
