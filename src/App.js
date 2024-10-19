@@ -1,12 +1,10 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'; // Import both BrowserRouter and HashRouter
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Use HashRouter for GitHub Pages
 import Login from './Login';
 import Chat from './Chat';
 import LoginRedirectHandler from './LoginRedirectHandler';
 import './App.css';
-
-const isLocalhost = window.location.hostname === 'localhost';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,11 +27,8 @@ const App = () => {
         setIsAuthenticated(false);
     };
 
-    // Dynamically switch between BrowserRouter and HashRouter
-    const RouterComponent = isLocalhost ? BrowserRouter : HashRouter;
-
     return (
-        <RouterComponent basename={isLocalhost ? '/' : '/react-chat-app'}>
+        <Router> {/* No need for basename here with HashRouter */}
             <div className="container">
                 {loading ? (
                     <p>Loading...</p>
@@ -51,7 +46,7 @@ const App = () => {
                     </Routes>
                 )}
             </div>
-        </RouterComponent>
+        </Router>
     );
 };
 
