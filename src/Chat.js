@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css'; 
-import maleImage from './water.jpg'; // Adjust the path based on your file structure
-import femaleImage from './trees.jpg'; // Adjust the path based on your file structure
 
 const Chat = () => {
   const [input, setInput] = useState(''); // For input text
@@ -12,6 +10,12 @@ const Chat = () => {
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
     : 'https://mysterious-beginning-ef3abfb64de0.herokuapp.com';
+
+  // Function to log out the user
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from localStorage
+    window.location.href = '/'; // Redirect to the homepage or login page
+  };
 
   const handleGenerateAudio = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
@@ -50,13 +54,16 @@ const Chat = () => {
     setInput('');
   };
 
-  // Handle voice selection
-  const handleVoiceSelect = (voice) => {
-    setSelectedVoice(voice); // Update the selected voice
-  };
-
   return (
     <div className="container">
+      {/* Dropdown Menu */}
+      <div className="menu">
+        <button className="dropdown-toggle">Menu</button>
+        <div className="dropdown-content">
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      </div>
+
       <div className="chat-window">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender === 'user' ? 'user' : 'bot'}`}>
@@ -73,7 +80,6 @@ const Chat = () => {
           </div>
         ))}
       </div>
-
       <form className="input-container" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -83,26 +89,6 @@ const Chat = () => {
         />
         <button type="submit">Send</button>
       </form>
-      
-      {/* Voice Selection with Images */}
-      <div className="voice-selection">
-        <div 
-          className={`voice-option ${selectedVoice === 'onyx' ? 'selected' : ''}`} 
-          onClick={() => handleVoiceSelect('onyx')}
-        >
-          <img src={maleImage} alt="Male Voice" />
-          <div className="voice-label">Male Voice</div>
-        </div>
-        <div 
-          className={`voice-option ${selectedVoice === 'shimmer' ? 'selected' : ''}`} 
-          onClick={() => handleVoiceSelect('shimmer')}
-        >
-          <img src={femaleImage} alt="Female Voice" />
-          <div className="voice-label">Female Voice</div>
-        </div>
-      </div>
-
-     
     </div>
   );
 };
