@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css'; 
+import maleImage from './maleImage.jpg'; // Replace with actual path for male voice image
+import femaleImage from './femaleImage.jpg'; // Replace with actual path for female voice image
 
 const Chat = () => {
   const [input, setInput] = useState(''); // For input text
   const [selectedVoice, setSelectedVoice] = useState('alloy'); // For selected voice
   const [messages, setMessages] = useState([]); // For storing messages
+  const [showMenu, setShowMenu] = useState(false); // For toggling menu visibility
   
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
@@ -15,6 +18,16 @@ const Chat = () => {
   const handleLogout = () => {
     localStorage.removeItem('token'); // Remove token from localStorage
     window.location.href = '/'; // Redirect to the homepage or login page
+  };
+
+  // Function to toggle the menu
+  const toggleMenu = () => {
+    setShowMenu(!showMenu); // Toggle the menu visibility
+  };
+
+  // Function to select voice
+  const handleVoiceSelect = (voice) => {
+    setSelectedVoice(voice);
   };
 
   const handleGenerateAudio = async () => {
@@ -56,12 +69,19 @@ const Chat = () => {
 
   return (
     <div className="container">
-      {/* Dropdown Menu */}
+      {/* Hamburger Menu */}
       <div className="menu">
-        <button className="dropdown-toggle">Menu</button>
-        <div className="dropdown-content">
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+        <button className="hamburger-menu" onClick={toggleMenu}>
+          {/* The three lines (hamburger icon) */}
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </button>
+        {showMenu && (
+          <div className="dropdown-content">
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
       </div>
 
       <div className="chat-window">
@@ -80,6 +100,8 @@ const Chat = () => {
           </div>
         ))}
       </div>
+      
+      {/* Input form */}
       <form className="input-container" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -89,6 +111,18 @@ const Chat = () => {
         />
         <button type="submit">Send</button>
       </form>
+
+      {/* Voice Selection below the submit button */}
+      <div className="voice-selection">
+        <div className={`voice-option ${selectedVoice === 'male' ? 'selected' : ''}`} onClick={() => handleVoiceSelect('male')}>
+          <img src={maleImage} alt="Male Voice" />
+          <div className="voice-label">Male Voice</div>
+        </div>
+        <div className={`voice-option ${selectedVoice === 'female' ? 'selected' : ''}`} onClick={() => handleVoiceSelect('female')}>
+          <img src={femaleImage} alt="Female Voice" />
+          <div className="voice-label">Female Voice</div>
+        </div>
+      </div>
     </div>
   );
 };
