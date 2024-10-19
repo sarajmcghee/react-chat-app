@@ -74,6 +74,16 @@ const Chat = () => {
         ))}
       </div>
 
+      <form className="input-container" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type your message..."
+        />
+        <button type="submit">Send</button>
+      </form>
+      
       {/* Voice Selection with Images */}
       <div className="voice-selection">
         <div 
@@ -92,15 +102,7 @@ const Chat = () => {
         </div>
       </div>
 
-      <form className="input-container" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
-        />
-        <button type="submit">Send</button>
-      </form>
+     
     </div>
   );
 };
