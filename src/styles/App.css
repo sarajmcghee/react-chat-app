@@ -3,50 +3,47 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: url('../assets/mountain.jpg') center/cover no-repeat;
-  background-attachment: fixed; /* Makes the background fixed while scrolling */
+  background-attachment: fixed;
   height: 100vh;
   margin: 0;
   padding: 0;
   color: #ffffff;
 }
 
-.container {
+.chat-container {
   max-width: 600px;
   width: 100%;
-  margin: 0 auto; /* This ensures the container is centered horizontally */
+  margin: 0 auto;
   padding: 20px;
   background-color: #212529;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   box-sizing: border-box;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
-
 
 .chat-window {
   max-height: 400px;
   overflow-y: auto;
-  border: 1px solid #495057; /* Lighter border for contrast */
+  border: 1px solid #495057;
   border-radius: 8px;
   padding: 15px;
-  background-color: #343a40; /* Dark background for the chat window */
+  background-color: #343a40;
   margin-bottom: 15px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
-  max-width: 100%; /* Prevent the chat window from exceeding the container */
-  box-sizing: border-box; /* Ensure padding is included in the total width */
+  box-sizing: border-box;
 }
 
 .input-container {
   display: flex;
-  justify-content: space-between; /* Space between input and button */
-  align-items: center; /* Center items vertically */
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
-  width: 100%; /* Full width of the container */
-  max-width: 100%; /* Prevent the input container from exceeding the container */
 }
 
 input[type="text"] {
-  flex: 1; /* Take up all available space */
+  flex: 1;
   margin-right: 10px;
   padding: 10px;
   border: 1px solid #495057;
@@ -54,21 +51,21 @@ input[type="text"] {
   background-color: white;
   color: #000;
   transition: border-color 0.3s;
-  box-sizing: border-box; /* Ensure padding is included in the width */
+  box-sizing: border-box;
 }
 
 button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff; /* Blue button */
+  background-color: #007bff;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.1s;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
 button:active {
@@ -82,7 +79,7 @@ button:active {
 }
 
 .message.user {
-  background-color: #007bff; /* Blue background for user messages */
+  background-color: #007bff;
   text-align: right;
   margin-left: 50px;
 }
