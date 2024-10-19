@@ -230,13 +230,18 @@ button:active {
 .dropdown-content {
   position: absolute;
   top: 30px; /* Place directly below the hamburger menu */
-  left: 0; /* Align with the hamburger menu */
+  left: 0; /* Ensure it stays within the Chat container */
   background-color: black;
   color: white;
   padding: 10px;
   border-radius: 5px;
   z-index: 1000;
   width: 150px; /* Set a width for the dropdown */
+}
+
+/* Constrain the dropdown inside the chat container */
+.container {
+  position: relative; /* The container becomes the bounding box for the dropdown */
 }
 
 .dropdown-content button {
