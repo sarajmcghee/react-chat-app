@@ -278,6 +278,7 @@ button:active {
 /* Dropdown Menu */
 .menu {
   position: relative;
+  margin-bottom: 20px; /* Add space between the hamburger menu and chat box */
 }
 
 .dropdown-content {
