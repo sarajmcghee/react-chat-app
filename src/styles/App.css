@@ -1,26 +1,29 @@
 
-/* General styles for the body */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('../assets/mountain.jpg') center/cover no-repeat;
-  background-attachment: fixed; /* Makes the background fixed while scrolling */
-  height: 100vh;
+/* General Styling */
+body, html {
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('../assets/mountain.jpg') center/cover no-repeat; /* Mountain background */
+  background-attachment: fixed; /* Keeps background fixed while scrolling */
+  height: 100vh;
   color: #ffffff;
 }
 
-/* Background from Landing Page */
+/* Container for the chat box */
 .container {
-  background: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);
-  min-height: 100vh; /* Ensure it covers the entire viewport */
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 800px; /* Increased width */
+  width: 90%; /* Full width on smaller screens */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 40px 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent black background */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Voxify header style to match the landing page */
+/* Voxify Header Styling */
 .voxify-header {
   font-size: 3.5rem;
   color: #ffffff;
@@ -31,69 +34,60 @@ body {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Transparent chat bubbles */
+/* Chat window styling */
+.chat-window {
+  max-height: 500px; /* Increased height */
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation */
+}
+
+/* User Message Styling */
 .message.user {
-  background-color: rgba(0, 123, 255, 0.7); /* Lighter blue */
-  color: #ffffff;
+  background-color: rgba(0, 123, 255, 0.7); /* Lighter, transparent blue */
   padding: 10px;
   border-radius: 10px;
   text-align: right;
+  color: #fff;
+  margin: 10px 0;
 }
 
+/* Bot Message Styling */
 .message.bot {
-  background-color: rgba(100, 100, 255, 0.7); /* Lighter blue for bot */
-  color: #ffffff;
+  background-color: rgba(100, 100, 255, 0.7); /* Lighter, transparent bot message */
   padding: 10px;
   border-radius: 10px;
   text-align: left;
+  color: #fff;
+  margin: 10px 0;
 }
 
-/* Same animated fade-in for the chat window */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.chat-window {
-  animation: fadeIn 1.5s ease-in-out;
-  max-height: 400px;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 15px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 600px; /* Ensures chat is centered in a fixed width container */
-  box-sizing: border-box;
-}
-/* Other styles remain unchanged */
+/* Input Container */
 .input-container {
   display: flex;
-  justify-content: space-between; /* Space between input and button */
+  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   width: 100%;
-  max-width: 100%; /* Match container width */
 }
 
 input[type="text"] {
   flex: 1;
   margin-right: 10px;
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #495057;
   border-radius: 5px;
   background-color: white;
   color: #000;
-  box-sizing: border-box;
+  transition: border-color 0.3s;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 10px 30px;
   border: none;
   border-radius: 5px;
   background-color: #007bff;
@@ -106,26 +100,28 @@ button:hover {
   background-color: #0056b3;
 }
 
-button:active {
-  transform: scale(0.95);
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(20px);
+  }
 }
 
-.message {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-
+/* Media Queries for responsiveness */
 @media (max-width: 768px) {
   .container {
-    width: 95%; /* Use a higher percentage for smaller screens */
-    padding: 10px;
+    max-width: 95%;
+    padding: 20px;
   }
 
   .chat-window {
-    max-height: 300px;
-    padding: 10px;
+    max-height: 400px;
+    padding: 15px;
   }
 
   input[type="text"] {
@@ -134,12 +130,19 @@ button:active {
 
   button {
     font-size: 1rem;
-    padding: 8px 16px;
+    padding: 10px 20px;
   }
+}
 
-  .message {
-    font-size: 0.9rem;
-  }
+
+button:active {
+  transform: scale(0.95);
+}
+
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 @media (max-width: 480px) {
