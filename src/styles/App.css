@@ -9,15 +9,17 @@ body {
 }
 
 .container {
-  max-width: 600px; /* Constrain the width to prevent overflow */
-  width: 100%; /* Full width on smaller screens */
-  margin: 0 auto;
-  background: #212529; /* Darker background for the container */
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto; /* This ensures the container is centered horizontally */
+  padding: 20px;
+  background-color: #212529;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  padding: 20px;
   overflow: hidden;
+  box-sizing: border-box;
 }
+
 
 .chat-window {
   max-height: 400px;

@@ -29,21 +29,27 @@ const App = () => {
   };
 
   return (
-    <Router> {/* No need for basename here with HashRouter */}
-      <div className="container">
+    <Router>
+      <div className="container"> {/* This container should have proper styling */}
         {loading ? (
           <p>Loading...</p>
         ) : (
           <Routes>
-            <Route path="/" element={isAuthenticated ? (
-              <div>
-                <h2>Chat Application</h2>
-                <Chat onLogout={handleLogout} />
-              </div>
-            ) : (
-              <Login onLogin={handleLogin} />
-            )} />
-<Route path="/auth/callback" element={<LoginRedirectHandler onLogin={handleLogin} />} />
+            <Route
+              path="/"
+              element={isAuthenticated ? (
+                <>
+                  <h2>Chat Application</h2>
+                  <Chat onLogout={handleLogout} />
+                </>
+              ) : (
+                <Login onLogin={handleLogin} />
+              )}
+            />
+            <Route
+              path="/auth/callback"
+              element={<LoginRedirectHandler onLogin={handleLogin} />}
+            />
           </Routes>
         )}
       </div>
