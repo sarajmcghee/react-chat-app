@@ -54,7 +54,15 @@ const Chat = () => {
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender === 'user' ? 'user' : 'bot'}`}>
             <p>{msg.text}</p>
-            {msg.audioUrl && <audio controls src={msg.audioUrl} />}
+            {msg.audioUrl && (
+              <div>
+                <audio controls src={msg.audioUrl} />
+                {/* Download button for the audio */}
+                <a href={msg.audioUrl} download={`audio-file-${index}.mp3`}>
+                  <button>Download Audio</button>
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>
