@@ -1,7 +1,7 @@
-// src/App.js
+// src/App.js 
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Use HashRouter for GitHub Pages
-import Login from './components/auth/Login';
+import LandingPage from './components/LandingPage';  // Import the Landing Page component
 import Chat from './components/Chat';
 import LoginRedirectHandler from './components/auth/LoginRedirectHandler';
 import './styles/App.css';
@@ -43,7 +43,7 @@ const App = () => {
                   <Chat onLogout={handleLogout} />
                 </>
               ) : (
-                <Login onLogin={handleLogin} />
+                <LandingPage />  
               )}
             />
             <Route

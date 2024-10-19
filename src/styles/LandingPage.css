@@ -1,0 +1,118 @@
+/* Variables */
+:root {
+    --primary-color: #28a745;
+    --secondary-color: #f4f4f4;
+    --cta-color: #007bff;
+    --cta-hover-color: #0056b3;
+    --overlay-color: rgba(0, 0, 0, 0.5);
+    --text-color: white;
+    --bg-gradient: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);
+  }
+  
+  /* General Styling */
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+  }
+  
+  /* Container for entire landing page */
+  .landing-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background: url('../assets/mountain.jpg') center/cover no-repeat; /* Ensure correct path to local image */
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    z-index: 2;
+    color: var(--text-color);
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+    margin: 0 0 20px;
+    color: var(--primary-color);
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    max-width: 600px; /* Restrict width for readability */
+  }
+  
+  /* Call to Action Button */
+  .cta-button {
+    background-color: var(--cta-color);
+    border: none;
+    padding: 15px 30px;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--cta-hover-color);
+  }
+  
+  /* Features Section */
+  .features {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--secondary-color);
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .feature {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .feature h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+  }
+  
+  .feature p {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #264653;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+  }
+  
