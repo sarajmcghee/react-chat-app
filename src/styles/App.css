@@ -1,30 +1,35 @@
 /* App.css */
 
+/* App.css */
+
+/* General styles for the body */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: url('../assets/mountain.jpg') center/cover no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; /* Makes the background fixed while scrolling */
   height: 100vh;
   margin: 0;
   padding: 0;
   color: #ffffff;
 }
 
-.chat-container {
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
+/* The container that holds all content including chat */
+.container {
+  max-width: 600px; /* Set the maximum width similar to the landing page */
+  width: 100%; /* Ensure it takes full width for smaller screens */
+  margin: 0 auto; /* Center the container horizontally */
   padding: 20px;
   background-color: #212529;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   box-sizing: border-box;
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
+/* Chat window to match container width */
 .chat-window {
-  max-height: 400px;
+  max-width: 100%; /* Ensure the chat window doesn’t exceed the container */
+  max-height: 400px; /* Keep the max-height for scrollable content */
   overflow-y: auto;
   border: 1px solid #495057;
   border-radius: 8px;
@@ -35,11 +40,14 @@ body {
   box-sizing: border-box;
 }
 
+/* Other styles remain unchanged */
 .input-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Space between input and button */
   align-items: center;
   margin-top: 20px;
+  width: 100%;
+  max-width: 100%; /* Match container width */
 }
 
 input[type="text"] {
@@ -50,7 +58,6 @@ input[type="text"] {
   border-radius: 5px;
   background-color: white;
   color: #000;
-  transition: border-color 0.3s;
   box-sizing: border-box;
 }
 

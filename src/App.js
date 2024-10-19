@@ -1,11 +1,10 @@
-// src/App.js 
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Use HashRouter for GitHub Pages
-import LandingPage from './components/LandingPage';  // Import the Landing Page component
+import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Use Navigate for redirects
+import jwt_decode from 'jwt-decode'; // Import jwt-decode
+import LandingPage from './components/LandingPage';  
 import Chat from './components/Chat';
 import LoginRedirectHandler from './components/auth/LoginRedirectHandler';
 import './styles/App.css';
-
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,9 +12,22 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+
     if (token) {
-      setIsAuthenticated(true);
+      const decodedToken = jwt_decode(token);
+      const currentTime = Date.now() / 1000; // Current time in seconds
+
+      // Check if token is expired
+      if (decodedToken.exp < currentTime) {
+        // Token is expired, remove it and redirect to landing page
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+      } else {
+        // Token is still valid
+        setIsAuthenticated(true);
+      }
     }
+    
     setLoading(false);
   }, []);
 
@@ -30,7 +42,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container"> {/* This container should have proper styling */}
+      <div className="container">
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -43,12 +55,17 @@ const App = () => {
                   <Chat onLogout={handleLogout} />
                 </>
               ) : (
-                <LandingPage />  
+                <LandingPage />
               )}
             />
             <Route
               path="/auth/callback"
               element={<LoginRedirectHandler onLogin={handleLogin} />}
+            />
+            {/* Redirect to landing page if not authenticated */}
+            <Route
+              path="*"
+              element={<Navigate to="/" />}
             />
           </Routes>
         )}
