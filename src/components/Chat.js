@@ -165,11 +165,11 @@ const Chat = () => {
 
       {/* Voice Selection below the submit button */}
       <div className="voice-selection">
-        <div className={`voice-option ${selectedVoice === 'male' ? 'selected' : ''}`} onClick={() => handleVoiceSelect('male')}>
+        <div className={`voice-option ${selectedVoice === 'onyx' ? 'selected' : ''}`} onClick={() => handleVoiceSelect('onyx')}>
           <img src={maleImage} alt="Male Voice" />
           <div className="voice-label">Male Voice</div>
         </div>
-        <div className={`voice-option ${selectedVoice === 'female' ? 'selected' : ''}`} onClick={() => handleVoiceSelect('female')}>
+        <div className={`voice-option ${selectedVoice === 'shimmer' ? 'selected' : ''}`} onClick={() => handleVoiceSelect('shimmer')}>
           <img src={femaleImage} alt="Female Voice" />
           <div className="voice-label">Female Voice</div>
         </div>
