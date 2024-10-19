@@ -146,3 +146,53 @@ button:active {
   padding: 5px;
   border-radius: 5px;
 }
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    width: 95%; /* Use a higher percentage for smaller screens */
+    padding: 10px;
+  }
+
+  .chat-window {
+    max-height: 300px; /* Reduce height on tablets */
+    padding: 10px;
+  }
+
+  input[type="text"] {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 16px; /* Adjust button size */
+  }
+
+  .message {
+    font-size: 0.9rem; /* Reduce message font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%; /* Full width on mobile */
+    padding: 5px;
+  }
+
+  .chat-window {
+    max-height: 250px; /* Smaller chat window on mobile */
+  }
+
+  input[type="text"] {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .message {
+    font-size: 0.8rem; /* Smaller font size for messages */
+  }
+}
