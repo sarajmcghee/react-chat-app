@@ -18,7 +18,7 @@ const PasswordField = ({ value, onChange }) => {
         placeholder="Password"
         style={{
           paddingRight: '30px', // Space for the eye icon
-          width: '100%', // Ensure full width
+          width: '90%', // Ensure full width
           height: '40px',
           borderRadius: '5px',
           border: '1px solid #495057', // Match with other inputs
