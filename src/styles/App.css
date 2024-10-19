@@ -26,7 +26,7 @@ body, html {
 /* Voxify Header Styling */
 .voxify-header {
   font-size: 3.5rem;
-  color: #ffffff;
+  color: #28a745;
   margin-bottom: 30px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -104,11 +104,11 @@ button:hover {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(0);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(20px);
+    transform: translateY(0);
   }
 }
 
