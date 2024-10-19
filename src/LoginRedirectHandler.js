@@ -8,7 +8,7 @@ const LoginRedirectHandler = ({ onLogin }) => {
     const handleLoginRedirect = async () => {
       const query = new URLSearchParams(window.location.search);
       const token = query.get('token');
-
+      console.log('Token from URL:', token);  // Log to see if the token is extracted correctly
       if (token) {
         // Store the JWT token in localStorage
         localStorage.setItem('token', token);
