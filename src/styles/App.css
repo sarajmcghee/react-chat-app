@@ -187,10 +187,10 @@ button:active {
 
 .voice-selection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Change from row to column for vertical stacking */
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 20px; /* Space between buttons */
   margin-top: 20px;
 }
 
@@ -239,6 +239,7 @@ button:active {
   text-align: center;
   font-size: 14px;
 }
+
 
 
 /* Media Queries for responsiveness */
