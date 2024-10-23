@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useSpring, animated } from 'react-spring'; // Import animation
 import '../styles/App.css'; 
 import echoImage from '../assets/echo.jpg'; 
-import shimmerImage from '../assets/shimmer.jpg'; 
+import shimmerImage from '../assets/shimmer.png'; 
 import fableImage from '../assets/fable.jpg'; 
 import onyxImage from '../assets/onyx.jpg'; 
 import novaImage from '../assets/nova.jpg'; 
