@@ -17,6 +17,7 @@ const Chat = () => {
   const [menuOpen, setMenuOpen] = useState(false); 
   const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(''); 
+  const audioRef = useRef(null); // Reference to keep track of current audio
 
   const audioSamples = {
     onyx: '/react-chat-app/assets/audio/onyx.mp3',
@@ -29,12 +30,20 @@ const Chat = () => {
   
   
   const handleSelectVoice = (voice) => {
-    setSelectedVoice(voice);
-    handleVoiceSelect(voice);
+    // Stop any currently playing audio
+    if (audioRef.current) {
+      audioRef.current.pause(); // Stop current audio
+      audioRef.current.currentTime = 0; // Reset to the start of the audio
+    }
 
-    // Play the associated audio sample
-    const audio = new Audio(audioSamples[voice]);
-    audio.play();
+    setSelectedVoice(voice);
+
+    // Create a new Audio object and play the selected voice
+    const newAudio = new Audio(audioSamples[voice]);
+    audioRef.current = newAudio; // Store the current audio in the ref
+    newAudio.play().catch(error => {
+      console.error('Error playing audio:', error);
+    });
   };
 
   const backendUrl = window.location.hostname === 'localhost'
