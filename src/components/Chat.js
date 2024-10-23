@@ -3,12 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useSpring, animated } from 'react-spring'; // Import animation
 import '../styles/App.css'; 
-import echoImage from '../assets/water.jpg'; 
-import shimmerImage from '../assets/trees.jpg'; 
-import fableImage from '../assets/water.jpg'; 
-import onyxImage from '../assets/trees.jpg'; 
-import novaImage from '../assets/water.jpg'; 
-import alloyImage from '../assets/trees.jpg'; 
+import echoImage from '../assets/echo.jpg'; 
+import shimmerImage from '../assets/shimmer.jpg'; 
+import fableImage from '../assets/fable.jpg'; 
+import onyxImage from '../assets/onyx.jpg'; 
+import novaImage from '../assets/nova.jpg'; 
+import alloyImage from '../assets/alloy.jpg'; 
 
 const Chat = () => {
   const [input, setInput] = useState(''); 
@@ -20,12 +20,12 @@ const Chat = () => {
 
   // Example paths to audio files (local or remote)
   const audioSamples = {
-    onyx: 'path_to_onyx_sample.mp3',
-    shimmer: 'path_to_shimmer_sample.mp3',
-    nova: 'path_to_nova_sample.mp3',
-    fable: 'path_to_fable_sample.mp3',
-    echo: 'path_to_echo_sample.mp3',
-    alloy: 'path_to_alloy_sample.mp3',
+    onyx: '../assets/onyx.mp3',
+    shimmer: '../assets/shimmer.mp3',
+    nova: '../assets/nova.mp3',
+    fable: '../assets/fable.mp3',
+    echo: '../assets/echo.mp3',
+    alloy: '../assets/alloy.mp3',
   };
 
   const handleSelectVoice = (voice) => {
