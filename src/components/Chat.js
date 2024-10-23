@@ -20,12 +20,12 @@ const Chat = () => {
 
 
   const audioSamples = {
-    onyx: '/react-chat-app/assets/audio/onyx.mp3',
-    shimmer: '/react-chat-app/assets/audio/shimmer.mp3',
-    nova: '/react-chat-app/assets/audio/nova.mp3',
-    fable: '/react-chat-app/assets/audio/fable.mp3',
-    echo: '/react-chat-app/assets/audio/echo.mp3',
-    alloy: '/react-chat-app/assets/audio/alloy.mp3',
+    onyx: '../assets/audio/onyx.mp3',
+    shimmer: '../assets/audio/shimmer.mp3',
+    nova: '../assets/assets/audio/nova.mp3',
+    fable: '../assets/audio/fable.mp3',
+    echo: '../assets/audio/echo.mp3',
+    alloy: '../assets/audio/alloy.mp3',
   };
   
   const handleSelectVoice = (voice) => {
