@@ -18,16 +18,16 @@ const Chat = () => {
   const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(''); 
 
-  // Example paths to audio files (local or remote)
-  const audioSamples = {
-    onyx: '../assets/onyx.mp3',
-    shimmer: '../assets/shimmer.mp3',
-    nova: '../assets/nova.mp3',
-    fable: '../assets/fable.mp3',
-    echo: '../assets/echo.mp3',
-    alloy: '../assets/alloy.mp3',
-  };
 
+  const audioSamples = {
+    onyx: '/react-chat-app/assets/audio/onyx.mp3',
+    shimmer: '/react-chat-app/assets/audio/shimmer.mp3',
+    nova: '/react-chat-app/assets/audio/nova.mp3',
+    fable: '/react-chat-app/assets/audio/fable.mp3',
+    echo: '/react-chat-app/assets/audio/echo.mp3',
+    alloy: '/react-chat-app/assets/audio/alloy.mp3',
+  };
+  
   const handleSelectVoice = (voice) => {
     setSelectedVoice(voice);
     handleVoiceSelect(voice);
